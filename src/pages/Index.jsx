@@ -1,10 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 
 const Index = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const handleToggle = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle("dark", !darkMode);
+  };
+
   return (
-    <div className="text-center">
-      <h1 className="text-3xl">Your Blank Canvas</h1>
-      <p>Chat with the agent to start making edits.</p>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-3xl mb-4">Track Your Package</h1>
+      <div className="flex items-center space-x-2 mb-4">
+        <Input placeholder="Enter your tracking number" className="w-64" />
+        <Button>Submit</Button>
+      </div>
+      <div className="flex items-center space-x-2">
+        <span>Light Mode</span>
+        <Switch checked={darkMode} onCheckedChange={handleToggle} />
+        <span>Dark Mode</span>
+      </div>
     </div>
   );
 };
